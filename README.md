@@ -25,6 +25,19 @@ Rather than functioning as a simple media server, this project represents a prac
 - Service integration
 - Infrastructure troubleshooting
 
+## Documentation
+
+The repository is organised into individual documents covering different aspects of the HomeLab infrastructure.
+
+| Document | Description |
+|----------|-------------|
+| 📐 [Architecture](docs/Architecture.md) | Overall system architecture, storage layout and infrastructure design |
+| 🐳 [Docker](docs/Docker.md) | Docker Compose deployment, containers and orchestration |
+| 🌐 [Networking](docs/Networking.md) | Docker networking, Tailscale, WireGuard and VPN architecture |
+| 🔧 [Deployment](docs/Deployment.md) | Step-by-step deployment process from a clean installation |
+| 🖥️ [Hardware](docs/Hardware.md) | Hardware specifications, storage configuration and optimisation |
+| 🛠️ [Troubleshooting](docs/Troubleshooting.md) | Engineering challenges, debugging process and lessons learned |
+| 🚀 [Future Plans](docs/FuturePlans.md) | Roadmap for future infrastructure improvements |
 ---
 
 # Project Motivation
