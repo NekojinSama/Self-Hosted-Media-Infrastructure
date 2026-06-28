@@ -1,0 +1,33 @@
+# Environment variables
+.env
+.env.*
+
+# Docker secrets
+secrets/
+*.key
+*.pem
+
+# SSH keys
+id_rsa
+id_ed25519
+authorized_keys
+
+# VS Code
+.vscode/
+
+# JetBrains
+.idea/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.bak
+
+# Compose overrides
+docker-compose.override.yml
