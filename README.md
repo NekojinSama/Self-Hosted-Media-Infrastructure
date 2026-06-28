@@ -1,434 +1,306 @@
 # Self-Hosted Media Infrastructure
 
-> A personal HomeLab project documenting the design, deployment and management of a self-hosted media infrastructure built using **Debian 13**, **OpenMediaVault 8** and **Docker Compose**.
+> A documented HomeLab project built on **Debian 13**, **OpenMediaVault 8** and **Docker Compose** to learn Linux administration, container orchestration, networking and infrastructure engineering through hands-on deployment.
 
-![Architecture](diagrams/homelab.png)
+![License](https://img.shields.io/badge/license-MIT-green)
+![Docker](https://img.shields.io/badge/Docker-Compose-blue)
+![OS](https://img.shields.io/badge/OS-Debian%2013-red)
+![OMV](https://img.shields.io/badge/OpenMediaVault-8-orange)
 
 ---
 
-## Overview
+# OpenMediaVault Dashboard
 
-This repository documents my self-hosted HomeLab infrastructure, developed over approximately six months to gain practical experience with Linux administration, Docker containerisation, networking, storage management and service orchestration.
+![OMV Dashboard](screenshots/omv-dashboard.png)
 
-Originally started as a centralised media server for my family, the project gradually evolved into a personal infrastructure laboratory where I could safely deploy, configure, troubleshoot and document enterprise-style technologies.
+*Overview of the HomeLab host showing running services, storage utilisation and Docker containers.*
 
-The infrastructure currently supports three users and provides secure local and remote access while automating media acquisition, organisation and streaming through an integrated ecosystem of Docker services.
+---
 
-Rather than functioning as a simple media server, this project represents a practical learning platform that has strengthened my understanding of:
+# Table of Contents
 
-- Linux system administration
-- Docker Compose orchestration
+- Overview
+- Key Features
+- Technology Stack
+- Hardware
+- Architecture
+- Media Workflow
+- Repository Structure
+- Documentation
+- Screenshots
+- Engineering Challenges
+- Lessons Learned
+- Future Roadmap
+- License
+- Author
+
+---
+
+# Overview
+
+This repository documents my personal HomeLab infrastructure developed over approximately **six months** using a repurposed Lenovo laptop.
+
+Originally created as a self-hosted media server for my family, the project gradually evolved into a practical infrastructure laboratory where I could explore:
+
+- Linux administration
+- Docker Compose
 - Container networking
-- VPN isolation using WireGuard
+- VPN networking
 - Storage management
-- Secure remote networking
-- Service integration
-- Infrastructure troubleshooting
+- Infrastructure documentation
+- Service orchestration
+- Troubleshooting
 
-## Documentation
+Rather than simply deploying applications, the objective was to understand **how modern infrastructure is designed, maintained and debugged**.
 
-The repository is organised into individual documents covering different aspects of the HomeLab infrastructure.
-
-| Document | Description |
-|----------|-------------|
-| 📐 [Architecture](docs/Architecture.md) | Overall system architecture, storage layout and infrastructure design |
-| 🐳 [Docker](docs/Docker.md) | Docker Compose deployment, containers and orchestration |
-| 🌐 [Networking](docs/Networking.md) | Docker networking, Tailscale, WireGuard and VPN architecture |
-| 🔧 [Deployment](docs/Deployment.md) | Step-by-step deployment process from a clean installation |
-| 🖥️ [Hardware](docs/Hardware.md) | Hardware specifications, storage configuration and optimisation |
-| 🛠️ [Troubleshooting](docs/Troubleshooting.md) | Engineering challenges, debugging process and lessons learned |
-| 🚀 [Future Plans](docs/FuturePlans.md) | Roadmap for future infrastructure improvements |
----
-
-# Project Motivation
-
-The objective of this project was not simply to host media.
-
-I wanted to create an environment where I could continuously develop practical infrastructure skills beyond university coursework by building, maintaining and troubleshooting a production-like server running on repurposed hardware.
-
-Throughout the project I intentionally avoided relying entirely on tutorials. Instead, I spent significant time researching Linux documentation, Docker networking, VPN routing, community forums and official project documentation in order to understand how each technology worked and how different services communicate with one another.
-
-This approach allowed me to experience many of the same challenges encountered in real infrastructure administration, including hardware failures, container networking issues, VPN routing problems and storage migration.
-
----
-
-# Objectives
-
-The primary objectives of this project were:
-
-- Build a reliable self-hosted media platform
-- Learn Linux server administration
-- Gain experience with Docker Compose
-- Understand container networking
-- Implement secure remote access
-- Automate media acquisition and organisation
-- Document deployment decisions
-- Improve troubleshooting and problem-solving skills
-- Create a platform for future experimentation with enterprise technologies
+The platform currently supports secure access for three users both locally and remotely through Tailscale.
 
 ---
 
 # Key Features
 
-- Debian 13 server
-- OpenMediaVault 8 NAS platform
-- Docker Compose based deployment
-- VPN-isolated download services using Gluetun
-- WireGuard VPN integration
-- Automated media management
-- Secure remote access through Tailscale
-- Centralised media streaming using Jellyfin
+- Debian 13 + OpenMediaVault 8
+- Docker Compose deployment
+- VPN-isolated download stack using Gluetun (WireGuard)
+- Automated media acquisition
+- Secure remote access using Tailscale
+- Jellyfin media streaming
+- Centralised media requests with Jellyseerr
 - Persistent Docker volumes
-- Organised configuration management
-- Automated media requests through Jellyseerr
-- Automatic importing and library management
-- Periodic container updates
-- Fully documented infrastructure
-
----
-
-# Hardware Specifications
-
-| Component | Specification |
-|------------|---------------|
-| Host Machine | Repurposed Lenovo Laptop |
-| CPU | Intel Core i5-4200M @ 2.50 GHz |
-| Memory | 12 GB DDR3 RAM |
-| Primary Storage | 1 TB External SSD |
-| Previous Storage | 1 TB Internal SSD (Hardware Failure) |
-| Operating System | Debian 13 |
-| NAS Platform | OpenMediaVault 8 |
-| Container Platform | Docker Compose |
+- Organised storage layout
+- Automatic media importing
+- Scheduled container updates
+- Fully documented architecture
 
 ---
 
 # Technology Stack
 
-## Operating System
-
-- Debian 13
-- OpenMediaVault 8
-
-## Container Platform
-
-- Docker
-- Docker Compose
-
-## Networking
-
-- Tailscale
-- WireGuard
-- Gluetun VPN
-- Docker Networks
-
-## Media
-
-- Jellyfin
-- Jellyseerr
-
-## Automation
-
-- Sonarr
-- Radarr
-- Lidarr
-- Bazarr
-- Prowlarr
-
-## Downloads
-
-- qBittorrent
-
-## Utilities
-
-- FlareSolverr
-- AdGuard Home
+| Category | Technologies |
+|-----------|--------------|
+| Operating System | Debian 13, OpenMediaVault 8 |
+| Containers | Docker, Docker Compose |
+| Media | Jellyfin, Jellyseerr |
+| Automation | Sonarr, Radarr, Lidarr, Bazarr, Prowlarr |
+| Downloads | qBittorrent |
+| Networking | Docker Networks, WireGuard, Gluetun, Tailscale |
+| DNS | AdGuard Home |
+| Utilities | FlareSolverr |
 
 ---
 
-# System Architecture
+# Hardware
 
-The HomeLab follows a modular Docker Compose architecture where each application runs inside its own container while sharing persistent storage volumes.
+| Component | Specification |
+|------------|---------------|
+| Host | Lenovo Laptop |
+| CPU | Intel Core i5-4200M |
+| RAM | 12 GB DDR3 |
+| Storage | 1 TB External SSD |
+| Previous Storage | 1 TB Internal SSD (Failed) |
+| Operating System | Debian 13 |
+| NAS Platform | OpenMediaVault 8 |
 
-VPN-sensitive applications communicate exclusively through a dedicated Gluetun container using Docker's `network_mode: service:gluetun`, ensuring download traffic remains isolated while media streaming services remain accessible locally and remotely.
-
-Insert architecture diagram here.
-
----
-
-# Engineering Decisions
-
-| Technology | Reason |
-|------------|--------|
-| Debian | Stable and lightweight Linux server platform |
-| OpenMediaVault | Simplified NAS and storage management |
-| Docker Compose | Reproducible container deployments |
-| Jellyfin | Open-source media streaming platform |
-| Tailscale | Secure remote access without exposing ports |
-| Gluetun | VPN isolation using WireGuard |
-| Docker Volumes | Persistent configuration management |
-| External SSD | Reliable storage after internal drive failure |
+Although modest by modern standards, this hardware has proven capable of running multiple containerised services simultaneously while remaining stable for continuous operation.
 
 ---
 
-# Storage Structure
+# Architecture
 
-The storage layout is intentionally separated into configuration and application data.
+![Architecture Diagram](diagrams/homelab.png)
 
-```
-Storage
-│
-├── Config
-│   ├── Jellyfin
-│   ├── Radarr
-│   ├── Sonarr
-│   ├── Jellyseerr
-│   ├── qBittorrent
-│   ├── Bazarr
-│   ├── Lidarr
-│   └── Prowlarr
-│
-└── Data
-    ├── Movies
-    ├── TV Shows
-    ├── Downloads
-    └── Music
-```
+The infrastructure is organised into modular Docker containers with VPN-isolated download services and secure remote access via Tailscale.
 
-Separating configuration files from media storage simplifies backup, migration and disaster recovery.
+A detailed explanation is available in:
+
+📄 **docs/Architecture.md**
 
 ---
 
 # Automated Media Workflow
 
-The media pipeline has been designed to minimise manual intervention.
-
 ```text
 User
-    │
-    ▼
+   │
+   ▼
 Jellyseerr
-    │
-    ▼
+   │
+   ▼
 Sonarr / Radarr
-    │
-    ▼
+   │
+   ▼
 Prowlarr
-    │
-    ▼
+   │
+   ▼
 qBittorrent
-    │
-    ▼
+   │
+   ▼
 Download
-    │
-    ▼
+   │
+   ▼
 Automatic Import
-    │
-    ▼
+   │
+   ▼
 Jellyfin Library
 ```
 
-The workflow allows users to request media directly through Jellyseerr. Requests are automatically processed, downloaded, organised into the correct folder structure and made available within Jellyfin without manual interaction.
-
----
-
-# Networking
-
-The infrastructure supports both local and remote access.
-
-### Local Access
-
-- Local Area Network
-- OpenMediaVault Dashboard
-- Jellyfin
-- Docker Services
-
-### Remote Access
-
-- Tailscale VPN
-- Secure encrypted communication
-- Access without exposing services to the public Internet
-
----
-
-# Security
-
-Security has been considered throughout the project.
-
-Measures include:
-
-- WireGuard VPN
-- Gluetun container isolation
-- No unnecessary public port exposure
-- Persistent Docker volumes
-- Docker network separation
-- Secure remote access through Tailscale
-- Regular system updates
-
----
-
-# Challenges Encountered
-
-Throughout development I encountered numerous technical challenges which significantly improved my troubleshooting abilities.
-
-## Internal SSD Failure
-
-The original internal SSD failed during development.
-
-Instead of rebuilding the server from scratch, I migrated the infrastructure to an external SSD while preserving Docker configurations and persistent data.
-
----
-
-## WireGuard Migration
-
-Migrated from OpenVPN to WireGuard after researching performance and reliability improvements.
-
-This required:
-
-- Docker Compose modifications
-- Environment variable configuration
-- VPN endpoint configuration
-- Network namespace troubleshooting
-
----
-
-## Docker Networking
-
-One of the most challenging aspects involved understanding how Docker containers communicate.
-
-Topics explored included:
-
-- Docker bridge networking
-- Network namespaces
-- Shared container networking
-- Volume mapping
-- Port forwarding
-- Service dependencies
-
----
-
-## Container Communication
-
-Considerable effort was spent configuring communication between:
-
-- Jellyseerr
-- Sonarr
-- Radarr
-- Prowlarr
-- qBittorrent
-- Jellyfin
-
-Achieving reliable automation required understanding API integration, networking and service discovery within Docker Compose.
-
----
-
-# Lessons Learned
-
-This project significantly improved my understanding of:
-
-- Linux administration
-- Infrastructure planning
-- Docker Compose
-- Container networking
-- VPN configuration
-- Storage management
-- Service orchestration
-- Technical documentation
-- Infrastructure troubleshooting
-- Independent learning
-
-Perhaps the most valuable lesson was recognising that successful infrastructure engineering is not simply about deploying software, but understanding how multiple systems interact and systematically diagnosing problems when they arise.
-
----
-
-# Future Improvements
-
-Planned enhancements include:
-
-- Grafana monitoring
-- Prometheus metrics
-- Homepage dashboard
-- Infrastructure as Code
-- Automated backups
-- Docker health monitoring
-- Centralised logging
-- Reverse proxy improvements
-- CI/CD for Docker Compose deployments
+Users simply request content through Jellyseerr. The remaining workflow is completely automated.
 
 ---
 
 # Repository Structure
 
-```
+```text
 Self-Hosted-Media-Infrastructure
 │
 ├── README.md
 ├── LICENSE
 ├── .gitignore
 │
-├── assets/
-├── diagrams/
-├── docker/
 ├── docs/
-└── screenshots/
+│   ├── Architecture.md
+│   ├── Deployment.md
+│   ├── Docker.md
+│   ├── Networking.md
+│   ├── Hardware.md
+│   ├── Troubleshooting.md
+│   └── FuturePlans.md
+│
+├── diagrams/
+│
+├── docker/
+│
+├── screenshots/
+│
+└── assets/
 ```
+
+---
+
+# Documentation
+
+| Document | Description |
+|----------|-------------|
+| 📐 [Architecture](docs/Architecture.md) | Infrastructure design and storage layout |
+| 🐳 [Docker](docs/Docker.md) | Docker Compose deployment and container architecture |
+| 🌐 [Networking](docs/Networking.md) | Docker networking, VPN and Tailscale |
+| 🚀 [Deployment](docs/Deployment.md) | Complete deployment process |
+| 💻 [Hardware](docs/Hardware.md) | Hardware platform and storage configuration |
+| 🔧 [Troubleshooting](docs/Troubleshooting.md) | Problems encountered and solutions |
+| 📈 [Future Plans](docs/FuturePlans.md) | Planned improvements |
 
 ---
 
 # Screenshots
 
-Planned documentation includes:
+## OpenMediaVault
 
-- OpenMediaVault Dashboard
-- Docker Compose Services
-- Jellyfin
-- Jellyseerr
-- qBittorrent
-- AdGuard Home
-- Tailscale
-- Network Architecture
-- Storage Layout
+![OMV](screenshots/omv-dashboard.png)
+
+Host operating system dashboard showing storage, CPU usage and Docker services.
 
 ---
 
-# Skills Demonstrated
+## Jellyfin
 
-| Category | Skills |
-|------------|--------|
-| Operating Systems | Debian, OpenMediaVault |
-| Linux Administration | File systems, permissions, SSH |
-| Containers | Docker, Docker Compose |
-| Networking | Docker Networking, Tailscale, WireGuard |
-| Storage | Volume management, NAS organisation |
-| Security | VPN isolation, secure remote access |
-| Media Automation | Sonarr, Radarr, Prowlarr, Jellyseerr |
-| Documentation | Architecture diagrams, technical documentation |
-| Troubleshooting | Networking, VPN, storage migration, Docker debugging |
+![Jellyfin](screenshots/jellyfin-home.png)
+
+Primary media streaming platform.
 
 ---
 
-# Acknowledgements
+## Jellyseerr
 
-This project was made possible through the excellent open-source communities behind:
+![Jellyseerr](screenshots/jellyseerr-dashboard.png)
 
-- Debian
-- OpenMediaVault
-- Docker
-- Jellyfin
-- Gluetun
-- Tailscale
-- Sonarr
-- Radarr
-- Prowlarr
-- Jellyseerr
-- Bazarr
-- Lidarr
-
-whose documentation, community forums and development efforts greatly assisted throughout the learning process.
+Media request interface connected to Sonarr and Radarr.
 
 ---
 
-## Author
+## Tailscale
+
+![Tailscale](screenshots/tailscale-dashboard.png)
+
+Secure remote access without exposing services to the Internet.
+
+---
+
+## AdGuard Home
+
+![AdGuard](screenshots/adguard-dashboard.png)
+
+DNS filtering and local network advertisement blocking.
+
+---
+
+# Engineering Challenges
+
+Throughout development I encountered numerous real-world infrastructure problems including:
+
+- Internal SSD hardware failure
+- Migration to external SSD
+- Docker networking issues
+- WireGuard VPN configuration
+- Container communication
+- API integration between services
+- Storage organisation
+- Persistent Docker volumes
+
+Solving these problems significantly improved my troubleshooting and Linux administration skills.
+
+---
+
+# Lessons Learned
+
+This project strengthened my understanding of:
+
+- Linux Administration
+- Docker Compose
+- Container Networking
+- VPN Configuration
+- Infrastructure Documentation
+- Service Integration
+- Storage Management
+- Infrastructure Planning
+- Troubleshooting
+- Independent Learning
+
+More importantly, it demonstrated that reliable infrastructure depends on thoughtful system design rather than expensive hardware.
+
+---
+
+# Future Roadmap
+
+Planned improvements include:
+
+- Homepage Dashboard
+- Grafana Monitoring
+- Prometheus Metrics
+- Reverse Proxy
+- Infrastructure as Code
+- Automated Backups
+- Centralised Logging
+- Docker Health Monitoring
+- Cloud Integration
+
+Detailed roadmap:
+
+📄 **docs/FuturePlans.md**
+
+---
+
+# License
+
+This repository is licensed under the MIT License.
+
+See [LICENSE](LICENSE).
+
+---
+
+# Author
 
 **Ashwin Bhanware**
 
-This repository documents my ongoing journey in Linux system administration, self-hosting, networking and enterprise infrastructure. It serves as both a technical portfolio and a record of continuous learning, and will continue to evolve as I explore new technologies and expand the capabilities of my HomeLab.
+This repository serves as both a technical portfolio and a record of my continued learning in Linux administration, networking, containerisation and infrastructure engineering.
+
+As I continue my postgraduate studies and professional career, this HomeLab will evolve to incorporate more advanced cloud and enterprise technologies.
