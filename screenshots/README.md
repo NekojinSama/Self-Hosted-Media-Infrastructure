@@ -4,7 +4,7 @@
 
 The server is managed through OpenMediaVault, providing visibility into system resources, Docker containers, storage and running services.
 
-![OpenMediaVault Dashboard](screenshots/omv-dashboard.png)
+![OpenMediaVault Dashboard](omv-dashboard.png)
 
 ---
 
@@ -12,7 +12,7 @@ The server is managed through OpenMediaVault, providing visibility into system r
 
 Jellyfin provides local and remote media streaming for authorised users.
 
-![Jellyfin](screenshots/jellyfin-home.png)
+![Jellyfin](jellyfin-home.png)
 
 ---
 
@@ -20,7 +20,7 @@ Jellyfin provides local and remote media streaming for authorised users.
 
 Users can request new movies and TV shows through Jellyseerr. Requests are automatically processed by Sonarr/Radarr and downloaded through the automated media pipeline.
 
-![Jellyseerr](screenshots/jellyseerr-dashboard.png)
+![Jellyseerr](jellyseerr-dashboard.png)
 
 ---
 
@@ -28,7 +28,7 @@ Users can request new movies and TV shows through Jellyseerr. Requests are autom
 
 Remote access is secured using Tailscale, allowing authorised devices to access the HomeLab without exposing ports to the public Internet.
 
-![Tailscale](screenshots/tailscale-admin.png)
+![Tailscale](tailscale-admin.png)
 
 ---
 
@@ -36,4 +36,4 @@ Remote access is secured using Tailscale, allowing authorised devices to access 
 
 AdGuard Home provides DNS filtering and network-wide advertisement blocking.
 
-![AdGuard Home](screenshots/adguard-dashboard.png)
+![AdGuard Home](adguard-dashboard.png)
