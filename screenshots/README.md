@@ -20,7 +20,7 @@ Jellyfin provides local and remote media streaming for authorised users.
 
 Users can request new movies and TV shows through Jellyseerr. Requests are automatically processed by Sonarr/Radarr and downloaded through the automated media pipeline.
 
-![Jellyseerr](jellyseerr-dashboard.png)
+![Jellyseerr](jellyseer-dashboard.png)
 
 ---
 
