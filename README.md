@@ -211,7 +211,7 @@ Primary media streaming platform.
 
 ## Jellyseerr
 
-![Jellyseerr](screenshots/jellyseerr-dashboard.png)
+![Jellyseerr](screenshots/jellyseer-dashboard.png)
 
 Media request interface connected to Sonarr and Radarr.
 
@@ -219,7 +219,7 @@ Media request interface connected to Sonarr and Radarr.
 
 ## Tailscale
 
-![Tailscale](screenshots/tailscale-dashboard.png)
+![Tailscale](screenshots/tailscale-admin.png)
 
 Secure remote access without exposing services to the Internet.
 
